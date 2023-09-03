@@ -23,12 +23,12 @@
         <div class="header">
             <h1>Hide&Seek</h1>
         </div>
-    
-    
+
+
         <div id="map"></div>
-    
+
     </div>
-    
+
     <script src="" async defer></script>
 </body>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -43,7 +43,14 @@
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
     });
+
     osm.addTo(map);
+    //world imagery
+    var WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+    });
+
+    WorldImagery.addTo(map)
 </script>
 
 </html>
