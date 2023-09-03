@@ -1,8 +1,15 @@
+.container{
+    display: grid;
+    gap: 2%;
+}
+
 .header{
     border-bottom: 2px solid gray;
 }
 
 #map { 
-    height: 50vh;
-    width: 50vw;
+    justify-self: center;
+    height: 80vh;
+    width: 90vw;
+
 }
