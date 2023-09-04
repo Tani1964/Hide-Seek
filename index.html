@@ -34,6 +34,8 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+<script src="./data/location.js"></script>
+
 <script>
     // Map initialization
     var map = L.map('map').setView([6.5244, 3.3792], 13);
@@ -58,7 +60,33 @@
         subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
     });
 
-    googleStreets.addTo(map)
+    var googleSat = L.tileLayer('http://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}', {
+        maxZoom: 20,
+        subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+    });
+
+    var marker = L.marker([6.5244, 3.3792], { draggable: true })
+    // var location = marker.getLatLng();
+    console.log(marker.toGeoJSON)
+    // googleSat.addTo(map)
+    marker.addTo(map)
+    // marker.bindPopup(location);
+
+    // layer controller
+    var baseMaps = {
+        "osm": osm,
+        "World imagery": WorldImagery,
+        "Google street":googleStreets,
+        "Google sat":googleSat
+    };
+
+    var overlayMaps = {
+        "Marker": marker
+    };
+
+    var layerControl = L.control.layers(baseMaps, overlayMaps, {collapsed: true}).addTo(map);
+
+    L.geoJSON(lekki).addTo(map).bindPopup('lekki')
 </script>
 
 </html>
